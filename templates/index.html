@@ -20,21 +20,31 @@
     </head>
     <body>
         <div class="appbar">
-            <img src="img/logo-getit.png" class="logo" />
-            <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+            <div class="barra">
+                <img src="img/logo-getit.png" class="logo" />
+                <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+            </div>
         </div>  
-        <main>
-            <form method="post">
-                <label for="titulo">Titulo</label>
-                <input id="titulo" type="text" name="titulo" />
-                <label for="detalhes">Detalhes</label>
-                <input id="detalhes" name="detalhes" />
-                <input type="submit" />
+        <main class="container">
+            <form class="form-card" method="post">
+                <input
+                    class="form-card-title"
+                    type="text"
+                    name="titulo"
+                    placeholder="Titulo"
+                />
+                <textarea
+                    class="autoresize"
+                    name="detalhes"
+                    placeholder="Digite o conteudo..."
+                ></textarea>
+                <button class="btn" type="submit">Criar</button>
             </form>
     
-            <ul>
+            <div class="card-container">
                 {notes}
-            </ul>
+            </div>
+            
         </main>
         
         <script type="text/javascript" src="getit.js"></script>
