@@ -16,12 +16,24 @@ def index(request):
             params[chave_valor.split('=')[0]] = urllib.parse.unquote_plus(chave_valor.split('=')[1])
         add_data(params,'banco' )
 
+    elif request.startswith('PUT'):
+        request = request.replace('\r', '')
+        partes = request.split('\n\n')
+        corpo = partes[1]
+        params = {}
+
+        for chave_valor in corpo.split('&'):
+            params[chave_valor.split('=')[0]] = urllib.parse.unquote_plus(chave_valor.split('=')[1])
+        update_data(params,'banco' )
+
     note_template = load_template('components/note.html')
     notes_li = [
         note_template.format(title=dados.title, details=dados.content)
         for dados in get_all_data('banco')
     ]
     notes = '\n'.join(notes_li)
+    
+
     if request.startswith('POST'):
         return build_response(code=303, reason='See Other', headers='Location: /') + load_template('index.html').format(notes=notes).encode()
     else:
